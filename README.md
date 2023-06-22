@@ -1,11 +1,11 @@
 # JetsonNanoFlashing
 
 
+####  Host setup is done
 ```
 sudo mkdir sources_nano
 cd sources_nano
 ```
-
 
 Download the latest images:
 
@@ -17,13 +17,11 @@ https://developer.nvidia.com/embedded/l4t/r32_release_v7.2/t210/tegra_linux_samp
 
 You can also just use the sdk manager to download the latest files for you
 
-
-move the files into the sources_nano folder
+Move the files into the sources_nano folder
 ```
 sudo mv ~/Downloads/Jetson-210_Linux_R32.7.2_aarch64.tbz2 ~/sources_nano/            
 sudo mv ~/Downloads/Tegra_Linux_Sample-Root-Filesystem-R32.7.2_aarch64.tbz2 ~/sources_nano/  
 ```
-
 
 Unzip the resources
 ```
@@ -34,14 +32,12 @@ cd .. /
 sudo ./apply_binaries.sh (If an error occurs, follow the prompts and re-enter the instruction). 
 ```
 
-####  Host setup is done
-
 #### Jetson Nano preparation
-        Jetson Nano board
-        Ubuntu virtual machine (or host computer)
-        5V 4A power adapter
-        Jumper caps (or DuPont cable)
-        USB Data cable (Micro USB interface, can transfer data)
+- Jetson Nano board
+- Ubuntu virtual machine (or host computer)
+- 5V 4A power adapter
+- Jumper caps (or DuPont cable)
+- USB Data cable (Micro USB interface, can transfer data)
 #### Hardware Configuration (entering recovery mode)
 - Short-connect the FC REC and GND pins with a jump cap or DuPont wire, located below the core board, as shown below.
 - Connect the DC power supply to the round power supply port and wait a while.
@@ -57,3 +53,29 @@ cd ~/sources_nano/Linux_for_Tegra
 sudo ./flash.sh jetson-nano-emmc mmcblk0p1
 ```
 After the programming is finished, remove the jumping cap of the bottom panel, connect to the monitor, power on it again, and follow the prompts to configure the boot (if it is a pre-config set, enter the system directly after powering on).
+
+
+### Creating Backup
+Follow the steps below to save the image in jetson nano to be reflashed again 
+```
+cd ~/sources_nano/Linux_for_Tegra
+sudo ./flash.sh -r -k APP -G backup.img jetson-nano-emmc mmcblk0p1
+```
+At the end of the clone command, the “backup.img.raw” file was saved and the “backup.img” file was created.
+
+Note: This step might take a lot of time.
+
+### Restoring The Backup
+
+- move the default system image to another path,
+```
+sudo mv bootloader/system.img* .
+```  
+- move the RAW image as “system.img” to the “bootloader” folder
+```
+sudo mv backup.img.raw bootloader/system.img
+```
+- burn the backup image:
+```
+sudo ./flash.sh -r jetson-nano-emmc mmcblk0p1
+```
