@@ -98,3 +98,9 @@ The Jetson image will be built and saved in the current directory in a file name
 
 Once the images are built, follow the Flashing section to flash the images 
 
+
+
+Once you boot the board with the new image, then you can install Nvidia libraries using apt
+```
+sudo apt install -y cuda-toolkit-10-2 libcudnn8 libcudnn8-dev
+```
