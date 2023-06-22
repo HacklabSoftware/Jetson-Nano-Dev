@@ -14,11 +14,35 @@ The default username is jetson and the password is jetson
 
 For Building the jetson image, all you need to have is the following tools installed on your machine.
 
-- podman
+- [podman](https://github.com/containers/podman/blob/main/install.md)
+  ```
+  sudo apt-get -y install podman
+  ```
+- [just](https://github.com/casey/just)
+
+  You must have the Prebuilt-MPR set up on your system in order to run this command.
+  ```
+  wget -qO - 'https://proget.makedeb.org/debian-feeds/prebuilt-mpr.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg 1> /dev/null
+  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | sudo tee /etc/apt/sources.list.d/prebuilt-mpr.list
+  sudo apt update
+  ```
+
+  Install Just
+  ```
+  sudo apt install just
+
+  ```
   
-- just
+- [jq](https://github.com/jqlang/jq)
+  ```
+  git clone https://github.com/jqlang/jq
+  git submodule update --init # if building from git to get oniguruma
+  autoreconf -fi              # if building from git
+  ./configure --with-oniguruma=builtin
+  make -j8
+  make check
+  ```
   
-- jq
   
 - qemu-user-static
 
