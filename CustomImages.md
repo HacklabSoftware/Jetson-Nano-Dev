@@ -22,29 +22,35 @@ For Building the jetson image, all you need to have is the following tools insta
 
   You must have the Prebuilt-MPR set up on your system in order to run this command.
   ```
-  wget -qO - 'https://proget.makedeb.org/debian-feeds/prebuilt-mpr.pub' | gpg --dearmor | sudo tee /usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg 1> /dev/null
-  echo "deb [arch=amd64 signed-by=/usr/share/keyrings/prebuilt-mpr-archive-keyring.gpg] https://proget.makedeb.org prebuilt-mpr $(lsb_release -cs)" | sudo tee /etc/apt/sources.list.d/prebuilt-mpr.list
-  sudo apt update
-  ```
-
-  Install Just
-  ```
-  sudo apt install just
-
+  snap install --edge --classic just
   ```
   
 - [jq](https://github.com/jqlang/jq)
-  ```
-  git clone https://github.com/jqlang/jq
-  git submodule update --init # if building from git to get oniguruma
-  autoreconf -fi              # if building from git
-  ./configure --with-oniguruma=builtin
-  make -j8
-  make check
-  ```
-  
+
+#### Ensure autoconf, automake and libtool are available, e.g. by running:
+```
+  sudo apt-get install autoconf automake libtool  
+```
+
+#### Download jq from github and install 
+```
+mkdir github		
+cd github		
+git clone https://github.com/jqlang/jq.git		
+cd jq
+
+cd modules/oniguruma
+autoreconf -fi
+cd ../..
+autoreconf -i
+./configure --with-oniguruma=builtin
+make
+```
   
 - qemu-user-static
+```  
+  sudo apt-get install -y qemu-user-static
+```
 
 Some ubuntu users report that you may need `makedb` as well which is provided by `libnss-db`.
 ```
@@ -76,6 +82,10 @@ For the jetson nano you can specify the revision: 200 or 300. For example, for t
 ```
 just build-jetson-image jetson-nano 200
 ```
+
+recomputer is build on Jetson Nano Developer Kit. We believe it is 300 version
+
+
 For the Jetson Nano 2GB, there is no need to provide the revision, so just use the following command:
 ```
 just build-jetson-image jetson-nano-2gb
