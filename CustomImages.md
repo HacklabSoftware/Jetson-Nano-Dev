@@ -85,6 +85,10 @@ just build-jetson-image jetson-nano 200
 
 recomputer is build on Jetson Nano Developer Kit. We believe it is 300 version
 
+```
+sudo just build-jetson-image jetson-nano 300
+```
+
 
 For the Jetson Nano 2GB, there is no need to provide the revision, so just use the following command:
 ```
