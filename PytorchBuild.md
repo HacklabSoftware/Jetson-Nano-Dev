@@ -1,4 +1,9 @@
-### Pythorch build for jetson nano
+
+Pytorch 2.0 and above uses CUDA 11. The Jetson Nano has CUDA 10.2.
+Due to low-level GPU incompatibility, installing CUDA 11 on your Nano is impossible.
+Pytorch 2.0 can only be installed on Jetson family members using a JetPack 5.0 or higher, such as the Jetson Nano Orion. [Source](https://qengineering.eu/install-pytorch-on-jetson-nano.html)
+
+### Pythorch build for jetson nano [Source](https://i7y.org/en/pytorch-build-on-jetson-nano/)
 
 Jetson Linux only supports python version 3.6, so if you need to use PyTorch with python 3.7 or higher, you will need to build PyTroch yourself, since the official Jetson PyTorch library does not exist.
 
@@ -31,15 +36,30 @@ sudo apt-get install -y cmake
 
 
 #### Install CUDA and cuDNN.
+Install cuda 10.2 from the jetpack. 
 
-To Do
+Uninstall the Current cuDNN: You can uninstall the current version of cuDNN using the following command:
+```
+sudo apt-get remove libcudnn8 libcudnn8-dev
+```
 
+Specify the Version in the Installation Command: When you install nvidia-cudnn8, specify the version of libcudnn8 and libcudnn8-dev that you want to install by using the following command:
+```
+sudo apt-get install libcudnn8=8.2.1.32-1+cuda10.2 libcudnn8-dev=8.2.1.32-1+cuda10.2
+```
+
+Prevent Automatic Upgrades: To prevent the system from automatically upgrading libcudnn8 and libcudnn8-dev to a different version in the future, you can hold these packages at their current versions using the following command:
+```
+sudo apt-mark hold libcudnn8 libcudnn8-dev
+```
 #### remove exisitng numpy package
 
 Before building PyTorch and TorchVision, remove numpy installed by apt because it causes conflicts and install numpy for python3.8.
 ```
 sudo apt remove -y python3-numpy
 ```
+
+
 
 #### build and install PyTorch with python3.8
 
