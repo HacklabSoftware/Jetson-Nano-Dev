@@ -35,7 +35,7 @@ sudo ./apply_binaries.sh (If an error occurs, follow the prompts and re-enter th
 #### Jetson Nano preparation
 - Jetson Nano board
 - Ubuntu virtual machine (or host computer)
-- 5V 4A power adapter (*** flashing fails if incorrect power supply is used ***)
+- 5V 4A power adapter (** flashing fails if incorrect power supply is used **)
 - Jumper caps (or DuPont cable)
 - USB Data cable (Micro USB interface, can transfer data)
 #### Hardware Configuration (entering recovery mode)
