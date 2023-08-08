@@ -34,6 +34,10 @@ sudo apt-get update
 sudo apt-get install -y cmake
 ```
 
+```
+sudo apt-get install -y nvidia-cuda nvidia-cudnn8
+```
+
 
 #### Install CUDA and cuDNN.
 Install cuda 10.2 from the jetpack. 
