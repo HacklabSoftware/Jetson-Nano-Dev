@@ -79,3 +79,21 @@ sudo mv backup.img.raw bootloader/system.img
 ```
 sudo ./flash.sh -r jetson-nano-emmc mmcblk0p1
 ```
+
+
+
+
+##### linux headers
+
+Check the linux version using 
+```
+uname -r
+```
+
+If needed headers can be downloaded from the below website:
+```
+https://repo.download.nvidia.com/jetson/#Jetpack%204.6.x
+```
+
+
+
