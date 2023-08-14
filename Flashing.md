@@ -81,6 +81,21 @@ sudo ./flash.sh -r jetson-nano-emmc mmcblk0p1
 ```
 
 
+Note [Source](https://forums.developer.nvidia.com/t/minimize-install-without-oem-config/183443): The first boot setup was added when California laws changed regarding default passwords. However, you can still perform this setup via QEMU on the host PC prior to flashing. Or you can use a clone of an updated Nano (I am assuming eMMC model and not SD card model) for the actual flash.
+
+Note that a clone provides both a “sparse” image (small size, cannot be loopback mounted) and a “raw” image (the size of the actual full partition). The raw image can be loopback mounted, examined, modified, so on. Flash can take place by replacing “bootloader/system.img” with either raw or sparse image (sparse image is faster, raw image works as expected despite being slower), and then flashing with the “-r” option to “reuse” the existing image.
+
+If you don’t use the “-r” option, then an image based on the content of the “rootfs/” directory is used to generate the “bootloader/system.img”. The flash command will slightly edit the boot content of the “rootfs/” depending on arguments, but otherwise the image created is an exact match of the “rootfs/” content (the use of “-r” is a purely exact match of the image you placed there without any editing at all). A raw clone can also be temporarily loopback mounted on the “rootfs/”, and although some boot content will be edited (e.g., extlinux.conf and the kernel Image), this might be more useful to you since it will correctly install the right boot content for those particular flash.sh parameters.
+
+FYI, for eMMC models, there are times when boot content will change depending on the revision of the module or carrier board, and so this is one reason why you might use loopback mount of a clone (or even recursive copy from clone to “rootfs/”) instead of directly placing this as the “bootloader/system.img” during “-r” option use: To make sure that the flash.sh script knows to add correct boot content for that model and release.
+
+Btw, most people should have a clone of their working system anyway as backup. Conveniently, it happens that if you were to loopback mount a raw clone on your host PC, then you could use ordinary rsync tools to update your clone (e.g., after you’ve tested some apt package updates on a test unit).
+
+I almost forgot: The rootfs content is normally a purely Ubuntu 18.04 with NVIDIA packages then added via the “apply_binaries.sh” script, which is a front end to running QEMU. You should examine it if interested in QEMU. There is a script people have found useful used for first boot setup via QEMU here:
+https://forums.developer.nvidia.com/t/jetson-nano-all-usb-ports-suddenly-stopped-working/75784/37 14
+
+
+
 
 
 ##### linux headers
