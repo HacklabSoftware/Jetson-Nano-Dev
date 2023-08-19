@@ -60,7 +60,7 @@ To tar (archive) and untar (extract) a folder while preserving ownership and per
 You can use the following command to archive a folder named `myfolder` into a file named `myarchive.tar`:
 
 ```bash
-tar -cvpf myarchive.tar myfolder/
+tar -cvpzf myarchive.tar myfolder/
 ```
 
 In this command:
@@ -75,7 +75,7 @@ In this command:
 To extract the `myarchive.tar` archive while preserving ownership:
 
 ```bash
-sudo tar -xvpf myarchive.tar
+sudo tar -xvpzf myarchive.tar
 ```
 
 In this command:
