@@ -86,10 +86,11 @@ In this command:
 - `v`: Verbose mode, show progress in the terminal
 - `p`: Preserve permissions
 - `f`: Filename of the archive to follow
+- `z`: Compress with gzip
 
 ##### To untar a folder:
 
-To extract the `myarchive.tar` archive while preserving ownership:
+To extract the `myarchive.tar.gz` archive while preserving ownership:
 
 ```bash
 sudo tar -xvpzf myarchive.tar.gz
@@ -101,8 +102,8 @@ In this command:
 - `v`: Verbose mode
 - `p`: Preserve permissions
 - `f`: Filename of the archive to follow
+- `z`: Compress with gzip
 
-If you have a tarball compressed with gzip (file ending in `.tar.gz` or `.tgz`), you can add the `z` option to compress (`czvpf`) or decompress (`xzvpf`). Similarly, if you have a tarball compressed with bzip2 (file ending in `.tar.bz2`), you can use the `j` option.
 
 
 
