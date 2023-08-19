@@ -69,10 +69,10 @@ At the end of the clone command, the “backup.img.raw” file was saved and the
 
 Note: This step might take a lot of time.
 
-### Backup the entire folder
+#### Backup the entire folder
 To tar (archive) and untar (extract) a folder while preserving ownership and permissions, you'll need the `tar` command. Additionally, if you want to preserve the ownership, you'll often need superuser (root) privileges when untarring the archive.
 
-#### To tar a folder:
+##### To tar a folder:
 
 You can use the following command to archive a folder named `sources_nano` into a file named `sources.tar.gz`:
 
@@ -87,7 +87,7 @@ In this command:
 - `p`: Preserve permissions
 - `f`: Filename of the archive to follow
 
-#### To untar a folder:
+##### To untar a folder:
 
 To extract the `myarchive.tar` archive while preserving ownership:
 
