@@ -57,10 +57,10 @@ To tar (archive) and untar (extract) a folder while preserving ownership and per
 
 ### To tar a folder:
 
-You can use the following command to archive a folder named `myfolder` into a file named `myarchive.tar`:
+You can use the following command to archive a folder named `sources_nano` into a file named `sources.tar.gz`:
 
 ```bash
-tar -cvpzf myarchive.tar myfolder/
+tar -cvpzf sources.tar.gz sources_nano/
 ```
 
 In this command:
@@ -75,7 +75,7 @@ In this command:
 To extract the `myarchive.tar` archive while preserving ownership:
 
 ```bash
-sudo tar -xvpzf myarchive.tar
+sudo tar -xvpzf myarchive.tar.gz
 ```
 
 In this command:
