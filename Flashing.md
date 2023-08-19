@@ -1,6 +1,5 @@
 # JetsonNanoFlashing
 
-
 ####  Host setup is done
 ```
 sudo mkdir sources_nano
@@ -53,6 +52,45 @@ cd ~/sources_nano/Linux_for_Tegra
 sudo ./flash.sh jetson-nano-emmc mmcblk0p1
 ```
 After the programming is finished, remove the jumping cap of the bottom panel, connect to the monitor, power on it again, and follow the prompts to configure the boot (if it is a pre-config set, enter the system directly after powering on).
+
+To tar (archive) and untar (extract) a folder while preserving ownership and permissions, you'll need the `tar` command. Additionally, if you want to preserve the ownership, you'll often need superuser (root) privileges when untarring the archive.
+
+### To tar a folder:
+
+You can use the following command to archive a folder named `myfolder` into a file named `myarchive.tar`:
+
+```bash
+tar -cvpf myarchive.tar myfolder/
+```
+
+In this command:
+
+- `c`: Create a new archive
+- `v`: Verbose mode, show progress in the terminal
+- `p`: Preserve permissions
+- `f`: Filename of the archive to follow
+
+### To untar a folder:
+
+To extract the `myarchive.tar` archive while preserving ownership:
+
+```bash
+sudo tar -xvpf myarchive.tar
+```
+
+In this command:
+
+- `x`: Extract the contents of the archive
+- `v`: Verbose mode
+- `p`: Preserve permissions
+- `f`: Filename of the archive to follow
+
+If you have a tarball compressed with gzip (file ending in `.tar.gz` or `.tgz`), you can add the `z` option to compress (`czvpf`) or decompress (`xzvpf`). Similarly, if you have a tarball compressed with bzip2 (file ending in `.tar.bz2`), you can use the `j` option.
+
+**Important Note**: When untarring an archive, especially one from an untrusted source, be cautious. There can be security risks. Always check the contents first with `tar -tvf myarchive.tar` to ensure you know what you're extracting and where it will be extracted to.
+
+Also, always remember that using the `sudo` command gives you superuser privileges, and using it improperly can harm your system. Always be sure of the command you're running, especially when executing it with `sudo`.
+
 
 
 ### Creating Backup
