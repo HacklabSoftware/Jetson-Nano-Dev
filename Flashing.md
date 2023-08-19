@@ -87,9 +87,6 @@ In this command:
 
 If you have a tarball compressed with gzip (file ending in `.tar.gz` or `.tgz`), you can add the `z` option to compress (`czvpf`) or decompress (`xzvpf`). Similarly, if you have a tarball compressed with bzip2 (file ending in `.tar.bz2`), you can use the `j` option.
 
-**Important Note**: When untarring an archive, especially one from an untrusted source, be cautious. There can be security risks. Always check the contents first with `tar -tvf myarchive.tar` to ensure you know what you're extracting and where it will be extracted to.
-
-Also, always remember that using the `sudo` command gives you superuser privileges, and using it improperly can harm your system. Always be sure of the command you're running, especially when executing it with `sudo`.
 
 
 
