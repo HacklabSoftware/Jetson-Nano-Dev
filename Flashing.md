@@ -53,9 +53,26 @@ sudo ./flash.sh jetson-nano-emmc mmcblk0p1
 ```
 After the programming is finished, remove the jumping cap of the bottom panel, connect to the monitor, power on it again, and follow the prompts to configure the boot (if it is a pre-config set, enter the system directly after powering on).
 
+
+
+
+
+
+
+### Creating Backup
+Follow the steps below to save the image in jetson nano to be reflashed again 
+```
+cd ~/sources_nano/Linux_for_Tegra
+sudo ./flash.sh -r -k APP -G backup.img jetson-nano-emmc mmcblk0p1
+```
+At the end of the clone command, the “backup.img.raw” file was saved and the “backup.img” file was created.
+
+Note: This step might take a lot of time.
+
+### Backup the entire folder
 To tar (archive) and untar (extract) a folder while preserving ownership and permissions, you'll need the `tar` command. Additionally, if you want to preserve the ownership, you'll often need superuser (root) privileges when untarring the archive.
 
-### To tar a folder:
+#### To tar a folder:
 
 You can use the following command to archive a folder named `sources_nano` into a file named `sources.tar.gz`:
 
@@ -70,7 +87,7 @@ In this command:
 - `p`: Preserve permissions
 - `f`: Filename of the archive to follow
 
-### To untar a folder:
+#### To untar a folder:
 
 To extract the `myarchive.tar` archive while preserving ownership:
 
@@ -88,17 +105,6 @@ In this command:
 If you have a tarball compressed with gzip (file ending in `.tar.gz` or `.tgz`), you can add the `z` option to compress (`czvpf`) or decompress (`xzvpf`). Similarly, if you have a tarball compressed with bzip2 (file ending in `.tar.bz2`), you can use the `j` option.
 
 
-
-
-### Creating Backup
-Follow the steps below to save the image in jetson nano to be reflashed again 
-```
-cd ~/sources_nano/Linux_for_Tegra
-sudo ./flash.sh -r -k APP -G backup.img jetson-nano-emmc mmcblk0p1
-```
-At the end of the clone command, the “backup.img.raw” file was saved and the “backup.img” file was created.
-
-Note: This step might take a lot of time.
 
 ### Restoring The Backup
 
