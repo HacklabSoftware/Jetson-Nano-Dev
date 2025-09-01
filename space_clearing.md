@@ -1,4 +1,4 @@
-# ---- SPACE FIRST AID (safe cleanup) ----
+# ---- SPACE CLEARING (safe cleanup) ----
 
 set -e
 
