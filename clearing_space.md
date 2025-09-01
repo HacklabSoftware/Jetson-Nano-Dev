@@ -27,4 +27,6 @@ echo "[5/7] (Optional) mount /tmp as RAM tmpfs to avoid disk usage"
 # Uses RAM; change size if you prefer
 sudo mount -t tmpfs -o rw,nosuid,nodev,mode=1777,size=512M tmpfs /tmp || true
 
-echo "[6/7] Verif
+echo "[6/7] Verify space & temp dirs"
+ls -ld /tmp /var/tmp /usr/tmp
+df -h / /tmp
